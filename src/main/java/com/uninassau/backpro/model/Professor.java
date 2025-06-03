@@ -31,7 +31,7 @@ public class Professor {
     @Column(name = "disciplina")
     private String disciplina;
 
-    @OneToMany(mappedBy = "turmaId")
+    @OneToMany(mappedBy = "professor")
     private List<Turma> turmas;
 
     @Column(name = "data_admissao")
@@ -40,6 +40,4 @@ public class Professor {
     @Column(name = "is_concursado")
     private boolean concursado;
 
-    @Version
-    private Integer version;
 }

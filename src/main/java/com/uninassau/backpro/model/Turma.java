@@ -16,7 +16,7 @@ public class Turma {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long turmaId;
+    private Long id;
 
     @Column(name = "nome")
     private String nome;
@@ -28,12 +28,10 @@ public class Turma {
     private String periodo;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "professor_id")
     private Professor professor;
 
-    @OneToMany(mappedBy = "alunoId")
+    @OneToMany(mappedBy = "turma")
     private List<Aluno> alunos;
 
-    @Version
-    private Integer version;
 }

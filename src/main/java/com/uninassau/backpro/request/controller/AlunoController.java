@@ -49,7 +49,9 @@ public class AlunoController implements AlunoApi {
         log.info("Iniciando salvamento de aluno: {}", aluno.getNome());
         try {
             aluno.setId(null); // Garantir que o ID seja nulo para criação
-            service.salvarAluno(mapper.toEntity(aluno));
+            Aluno alunoEntity = mapper.toEntity(aluno);
+            log.info("Convertendo AlunoDTO para Aluno Entity: {}", alunoEntity.getNome());
+            service.salvarAluno(alunoEntity);
             log.info("Aluno salvo com sucesso: {}", aluno.getNome());
             return ResponseEntity.ok().body(new ResponseApiAluno(null, "Aluno salvo com sucesso!"));
 

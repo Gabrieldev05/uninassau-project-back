@@ -18,7 +18,6 @@ public class TurmaService {
         return turmaRepository.findAll();
     }
 
-    @Transactional
     public void salvarTurma(Turma turma) {
         turmaRepository.save(turma);
     }

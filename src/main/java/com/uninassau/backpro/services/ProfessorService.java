@@ -18,7 +18,6 @@ public class ProfessorService {
         return repository.findAll();
     }
 
-    @Transactional
     public void salvarProfessor(Professor professor) {
         repository.save(professor);
     }

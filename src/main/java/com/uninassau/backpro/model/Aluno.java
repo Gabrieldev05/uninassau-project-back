@@ -16,7 +16,7 @@ public class Aluno {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long alunoId;
+    private Long id;
 
     @Column(name = "nome")
     private String nome;
@@ -34,6 +34,6 @@ public class Aluno {
     private boolean bolsista;
 
     @ManyToOne
-    @JoinColumn(name = "turmaId")
+    @JoinColumn(name = "turma_id")
     private Turma turma;
 }

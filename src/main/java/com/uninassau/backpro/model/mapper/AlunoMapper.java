@@ -10,9 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface AlunoMapper {
     AlunoMapper INSTANCE = Mappers.getMapper(AlunoMapper.class);
 
-    @Mapping(target = "id", source = "alunoId")
     AlunoDTO toDTO(Aluno aluno);
-
-    @Mapping(target = "alunoId", source = "id")
     Aluno toEntity(AlunoDTO alunoDTO);
 }

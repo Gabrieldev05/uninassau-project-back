@@ -10,9 +10,6 @@ import org.mapstruct.factory.Mappers;
 public interface TurmaMapper {
     TurmaMapper INSTANCE = Mappers.getMapper(TurmaMapper.class);
 
-    @Mapping(target = "id", source = "turmaId")
     TurmaDTO toDTO(Turma turma);
-
-    @Mapping(target = "turmaId", source = "id")
     Turma toEntity(TurmaDTO turmaDTO);
 }
