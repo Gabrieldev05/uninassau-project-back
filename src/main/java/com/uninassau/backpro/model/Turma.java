@@ -27,11 +27,10 @@ public class Turma {
     @Column(name = "periodo")
     private String periodo;
 
-    @ManyToOne
-    @JoinColumn(name = "professor_id")
-    private Professor professor;
+    @OneToMany(mappedBy = "turma")
+    private List<RlcTurmaProfessor> professores;
 
     @OneToMany(mappedBy = "turma")
-    private List<Aluno> alunos;
+    private List<RlcTurmaAluno> alunos;
 
 }

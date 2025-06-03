@@ -46,7 +46,7 @@ public class TurmaController implements TurmaApi {
     public ResponseEntity<ResponseApiTurma> salvarTurma(TurmaDTO turma) {
         log.info("Iniciando salvamento de turma: {}", turma.getNome());
         try {
-            turma.setTurmaId(null);
+            turma.setId(null);
             service.salvarTurma(mapper.toEntity(turma));
             log.info("Turma salva com sucesso: {}", turma.getNome());
             return ResponseEntity.ok().body(new ResponseApiTurma(null, "Turma salva com sucesso!"));
@@ -54,5 +54,12 @@ public class TurmaController implements TurmaApi {
             log.error("Erro ao salvar turma: {}", e.getMessage());
             throw new RuntimeException("Erro ao salvar turma", e);
         }
+    }
+
+    @Override
+    public ResponseEntity<ResponseApiTurma> vincularAlunoATurma(List<Long> guid_alunos, Long turma) {
+        log.info("Iniciando vinculação de alunos à turma: {}", turma);
+        service.vincularAlunosAturma(guid_alunos, turma);
+        return ResponseEntity.ok().body(new ResponseApiTurma(null, "Alunos vinculados com sucesso!"));
     }
 }

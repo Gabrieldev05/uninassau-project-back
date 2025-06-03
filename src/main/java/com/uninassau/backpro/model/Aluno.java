@@ -4,6 +4,7 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
+import java.util.List;
 
 @Getter
 @Setter
@@ -33,7 +34,6 @@ public class Aluno {
     @Column(name = "is_bolsista")
     private boolean bolsista;
 
-    @ManyToOne
-    @JoinColumn(name = "turma_id")
-    private Turma turma;
+    @OneToMany(mappedBy = "aluno")
+    private List<RlcTurmaAluno> turmas;
 }

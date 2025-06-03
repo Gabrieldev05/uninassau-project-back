@@ -13,6 +13,8 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/professor")
 @Tag(name = "Informações dos Professores")
@@ -44,6 +46,22 @@ public interface ProfessorApi {
             @ApiResponse(responseCode = "500", description = "Internal system error",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = MensagemErrorException.class)))})
-    @GetMapping(value = "/salvar")
+    @PostMapping(value = "/salvar")
     ResponseEntity<ResponseApiProfessor> salvarProfessor(@RequestBody ProfessorDTO professor);
+
+    @Operation(summary = "Vincular turmas ao professor", description = "Endpoint responsável por vincular turmas a um professor")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Sucesso ao vincular turmas ao professor",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ResponseApiProfessor.class))}),
+            @ApiResponse(responseCode = "404", description = "Vinculo não realizado",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MensagemErrorException.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal system error",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MensagemErrorException.class)))})
+    @PostMapping(value = "/vincular-turmas")
+    ResponseEntity<ResponseApiProfessor> vincularTurmasAoProfessor(
+            @RequestHeader("guid_turmas") List<Long> guid_turmas,
+            @RequestParam("guid_professor") Long professorId);
 }

@@ -11,9 +11,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/aluno")
@@ -46,6 +44,6 @@ public interface AlunoApi {
             @ApiResponse(responseCode = "500", description = "Internal system error",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = MensagemErrorException.class)))})
-    @GetMapping(value = "/salvar")
-    ResponseEntity<ResponseApiAluno> salvarAluno(AlunoDTO aluno);
+    @PostMapping(value = "/salvar")
+    ResponseEntity<ResponseApiAluno> salvarAluno(@RequestBody AlunoDTO aluno);
 }

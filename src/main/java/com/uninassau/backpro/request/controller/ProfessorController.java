@@ -47,7 +47,9 @@ public class ProfessorController implements ProfessorApi {
         log.info("Iniciando salvamento de professor: {}", professor.getNome());
         try {
             professor.setId(null);
-            service.salvarProfessor(mapper.toEntity(professor));
+            Professor entity = mapper.toEntity(professor);
+            log.info("Convertendo DTO para entidade: {}", entity.getNome());
+            service.salvarProfessor(entity);
             log.info("Professor salvo com sucesso: {}", professor.getNome());
             return ResponseEntity.ok().body(new ResponseApiProfessor(null, "Professor salvo com sucesso!"));
 
@@ -55,5 +57,12 @@ public class ProfessorController implements ProfessorApi {
             log.error("Erro ao salvar professor: {}", e.getMessage());
             throw new RuntimeException("Erro ao salvar professor", e);
         }
+    }
+
+    @Override
+    public ResponseEntity<ResponseApiProfessor> vincularTurmasAoProfessor(List<Long> guid_turmas, Long professorId) {
+        log.info("Iniciando vinculação de turmas ao professor com ID: {}", professorId);
+        service.voincularTurmasAoProfessor(guid_turmas, professorId);
+        return ResponseEntity.ok().body(new ResponseApiProfessor(null, "Vinculo realizado com sucesso!"));
     }
 }

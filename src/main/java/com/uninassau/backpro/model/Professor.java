@@ -32,7 +32,7 @@ public class Professor {
     private String disciplina;
 
     @OneToMany(mappedBy = "professor")
-    private List<Turma> turmas;
+    private List<RlcTurmaProfessor> turmas;
 
     @Column(name = "data_admissao")
     private LocalDate dataAdmissao;

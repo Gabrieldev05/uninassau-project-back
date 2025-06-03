@@ -11,9 +11,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/turma")
@@ -46,6 +46,22 @@ public interface TurmaApi {
             @ApiResponse(responseCode = "500", description = "Internal system error",
                     content = @Content(mediaType = "application/json",
                             schema = @Schema(implementation = MensagemErrorException.class)))})
-    @GetMapping(value = "/salvar")
-    ResponseEntity<ResponseApiTurma> salvarTurma(TurmaDTO turma);
+    @PostMapping(value = "/salvar")
+    ResponseEntity<ResponseApiTurma> salvarTurma(@RequestBody TurmaDTO turma);
+
+    @Operation(summary = "Vincular Alunos a uma turma", description = "Endpoint responsável por vincular Alunos a uma turma")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Sucesso ao vincular alunos a turma",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = ResponseApiTurma.class))}),
+            @ApiResponse(responseCode = "404", description = "Vinculo não realizado",
+                    content = {@Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MensagemErrorException.class))}),
+            @ApiResponse(responseCode = "500", description = "Internal system error",
+                    content = @Content(mediaType = "application/json",
+                            schema = @Schema(implementation = MensagemErrorException.class)))})
+    @PostMapping(value = "/vincular-alunos")
+    ResponseEntity<ResponseApiTurma> vincularAlunoATurma(
+            @RequestHeader("guid_alunos")List<Long> guid_alunos,
+            @RequestParam("guid_turma") Long turma);
 }

@@ -1,10 +1,8 @@
 package com.uninassau.backpro.model.dto;
 
-import com.uninassau.backpro.model.Turma;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.List;
 
 @Getter
 @Setter
@@ -18,7 +16,6 @@ public class ProfessorDTO {
     private String sexo;
     private int idade;
     private String disciplina;
-    private List<Turma> turmas;
     private LocalDate dataAdmissao;
     private boolean concursado;
 }
