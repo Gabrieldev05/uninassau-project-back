@@ -2,6 +2,7 @@ package com.uninassau.backpro.services;
 
 import com.uninassau.backpro.model.Professor;
 import com.uninassau.backpro.repositories.ProfessorRepository;
+import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class ProfessorService {
         return repository.findAll();
     }
 
+    @Transactional
     public void salvarProfessor(Professor professor) {
         repository.save(professor);
     }

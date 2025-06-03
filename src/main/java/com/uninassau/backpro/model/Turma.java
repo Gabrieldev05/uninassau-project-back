@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +15,8 @@ import java.util.UUID;
 public class Turma {
 
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long turmaId;
 
     @Column(name = "nome")
     private String nome;
@@ -31,6 +31,9 @@ public class Turma {
     @JoinColumn(name = "id")
     private Professor professor;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "alunoId")
     private List<Aluno> alunos;
+
+    @Version
+    private Integer version;
 }

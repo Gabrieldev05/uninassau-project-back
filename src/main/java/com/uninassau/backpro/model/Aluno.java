@@ -4,7 +4,6 @@ import jakarta.persistence.*;
 import lombok.*;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -16,7 +15,8 @@ import java.util.UUID;
 public class Aluno {
 
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long alunoId;
 
     @Column(name = "nome")
     private String nome;
@@ -34,6 +34,6 @@ public class Aluno {
     private boolean bolsista;
 
     @ManyToOne
-    @JoinColumn(name = "id")
+    @JoinColumn(name = "turmaId")
     private Turma turma;
 }

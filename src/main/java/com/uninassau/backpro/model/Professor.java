@@ -5,7 +5,6 @@ import lombok.*;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -17,7 +16,8 @@ import java.util.UUID;
 public class Professor {
 
     @Id
-    private UUID id;
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    private Long id;
 
     @Column(name = "nome")
     private String nome;
@@ -28,7 +28,10 @@ public class Professor {
     @Column(name = "idade")
     private int idade;
 
-    @OneToMany(mappedBy = "id", cascade = CascadeType.ALL, orphanRemoval = true)
+    @Column(name = "disciplina")
+    private String disciplina;
+
+    @OneToMany(mappedBy = "turmaId")
     private List<Turma> turmas;
 
     @Column(name = "data_admissao")
@@ -37,4 +40,6 @@ public class Professor {
     @Column(name = "is_concursado")
     private boolean concursado;
 
+    @Version
+    private Integer version;
 }

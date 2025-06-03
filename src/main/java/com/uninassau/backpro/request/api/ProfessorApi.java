@@ -1,7 +1,8 @@
-package com.uninassau.backpro.controllers.api;
+package com.uninassau.backpro.request.api;
 
-import com.uninassau.backpro.model.Professor;
-import com.uninassau.backpro.model.Professor;
+import com.uninassau.backpro.exceptions.MensagemErrorException;
+import com.uninassau.backpro.model.dto.ProfessorDTO;
+import com.uninassau.backpro.request.response.ResponseApiProfessor;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.Content;
@@ -12,39 +13,37 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping("/professor")
-@Tag(name = "Informaçoes do Professor")
+@Tag(name = "Informações dos Professores")
 @OpenAPIDefinition
 public interface ProfessorApi {
 
-    @Operation(summary = "Buscar professor", description = "Endpoint responsável por obter informacoes do professor")
+    @Operation(summary = "Buscar professores", description = "Endpoint responsável por obter professores")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Sucesso ao encontrar os professores",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Exception.class))}),
+                            schema = @Schema(implementation = ResponseApiProfessor.class))}),
             @ApiResponse(responseCode = "404", description = "Professores não encontrados",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Exception.class))}),
+                            schema = @Schema(implementation = MensagemErrorException.class))}),
             @ApiResponse(responseCode = "500", description = "Internal system error",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Exception.class)))})
+                            schema = @Schema(implementation = MensagemErrorException.class)))})
     @GetMapping(value = "/buscar")
-    ResponseEntity<List<Professor>> buscarProfessor();
+    ResponseEntity<ResponseApiProfessor> buscarProfessor();
 
-    @Operation(summary = "Salvar professor", description = "Endpoint responsável por salvar Professor")
+    @Operation(summary = "Criar professor", description = "Endpoint responsável por criar Professor")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Sucesso ao encontrar os professores",
+            @ApiResponse(responseCode = "200", description = "Sucesso criar professor",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Exception.class))}),
-            @ApiResponse(responseCode = "404", description = "Professores não encontrados",
+                            schema = @Schema(implementation = ResponseApiProfessor.class))}),
+            @ApiResponse(responseCode = "404", description = "Professores não cadastrado",
                     content = {@Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Exception.class))}),
+                            schema = @Schema(implementation = MensagemErrorException.class))}),
             @ApiResponse(responseCode = "500", description = "Internal system error",
                     content = @Content(mediaType = "application/json",
-                            schema = @Schema(implementation = Exception.class)))})
+                            schema = @Schema(implementation = MensagemErrorException.class)))})
     @GetMapping(value = "/salvar")
-    ResponseEntity salvarProfessor(@RequestBody Professor professor);
+    ResponseEntity<ResponseApiProfessor> salvarProfessor(@RequestBody ProfessorDTO professor);
 }
