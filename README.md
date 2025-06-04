@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # BackPro
 
 ## Descrição
@@ -67,8 +66,3 @@ Navegue até o diretório do projeto:
 cd backpro
 Compile e execute o projeto:
 mvn spring-boot:run
-
-=======
-# uninassau-project-back
-Projeto/Atividade Uninassau Back-end
->>>>>>> 1fc01a0 (Initial commit)
