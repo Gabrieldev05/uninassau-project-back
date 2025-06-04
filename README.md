@@ -4,7 +4,7 @@
 BackPro é um sistema desenvolvido em **Java** utilizando o framework **Spring Boot** para gerenciar entidades como **Aluno**, **Professor** e **Turma**. O projeto utiliza **PostgreSQL** como banco de dados e segue boas práticas de desenvolvimento, incluindo mapeamento de entidades para DTOs e testes unitários com **JUnit** e **Mockito**.
 
 ---
-## Itegrantes do projeto
+## Integrantes do projeto
 - **Leticia Bortnik Machado Dias Vasconcelos - matricula: 01743475**
 - **Leandro Barros Marcolino Da Silva - matricula: 01652713**
 - **Gabriel Ferraz de Melo - matricula: 01626279**
