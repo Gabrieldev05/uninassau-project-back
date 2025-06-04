@@ -8,6 +8,7 @@ BackPro é um sistema desenvolvido em **Java** utilizando o framework **Spring B
 - **Leticia Bortnik Machado Dias Vasconcelos - matricula: 01743475**
 - **Leandro Barros Marcolino Da Silva - matricula: 01652713**
 - **Gabriel Ferraz de Melo - matricula: 01626279**
+- **Luiz Cordeiro de Albuquerque Neto - Matricula: 01043498**
 
 ---
 ## Tecnologias Utilizadas
