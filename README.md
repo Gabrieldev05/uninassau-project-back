@@ -56,7 +56,7 @@ PostgreSQL configurado.
 
 Passos:
 Clone o repositório:
-git clone https://github.com/Walter091/backpro.git
+git clone https://github.com/Gabrieldev05/uninassau-project-back.git
 Navegue até o diretório do projeto:
 cd backpro
 Compile e execute o projeto:
